@@ -420,6 +420,35 @@ model_urls = {
     "poolformer_m48": "https://github.com/sail-sg/poolformer/releases/download/v1.0/poolformer_m48.pth.tar",
 }
 
+##########################################################
+#以下は実験のためにモデルを追加した
+@register_model
+def poolformer_s3(pretrained=False, **kwargs):
+    layers = [0, 0, 0, 2]
+    embed_dims = [64, 128, 320, 512]
+    mlp_ratios = [4, 4, 4, 4]
+    downsamples = [True, True, True, True]
+    model = PoolFormer(
+        layers, embed_dims=embed_dims,
+        mlp_ratios=mlp_ratios, downsamples=downsamples,
+        **kwargs)
+    model.default_cfg = default_cfgs['poolformer_s']
+    return model
+
+@register_model
+def poolformer_s4(pretrained=False, **kwargs):
+    layers = [1, 1, 1, 1]
+    embed_dims = [64, 128, 320, 512]
+    mlp_ratios = [4, 4, 4, 4]
+    downsamples = [True, True, True, True]
+    model = PoolFormer(
+        layers, embed_dims=embed_dims,
+        mlp_ratios=mlp_ratios, downsamples=downsamples,
+        **kwargs)
+    model.default_cfg = default_cfgs['poolformer_s']
+    return model
+############################################################
+
 
 @register_model
 def poolformer_s12(pretrained=False, **kwargs):
